@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<script src="vue.js"></script>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="box">
+  <button @click="handleClick">click1</button> <!--不需要传递参数的写法-->
+  <button @click="handleClick($event)">click2</button> <!--需要传递参数的写法-->
+  <button @click="isShow=!isShow">click3</button>  <!--如果方法过于简单，可以直接写到标签中。避免这种写法-->
+    <div v-show="isShow">111111111111111111</div>
+
+    <!--进行点击判断，判断是否是点击了ul触发了事件还是子类冒泡导致触发了事件-->
+    <ul @click.self="handleUlClick()">
+        <!--第二种方法禁止冒泡-->
+        <li @click.stop="handleLiClick($event)">111111</li>
+        <li @click="handleLiClick()">222222</li>
+        <!--设置只生效一次-->
+        <li @click.once="handleLiClick()">333333</li>
+        <!--阻止标签的默认行为-->
+        <a href="jokerboozp.top" @click.prevent="handleChangePage()">帐篷的小博客</a>
+    </ul>
+</div>
+<script>
+    new Vue({
+        el:"#box",
+        data:{
+            isShow: false
+        },
+        methods:{
+            handleClick(ev){
+                this.isShow=! this.isShow
+            },
+            handleLiClick(ev){
+                /*
+                //第一种禁止冒泡的方法
+                ev.stopPropagation();*/
+                console.log("li click")
+            },
+            handleUlClick(){
+                console.log("ul click")
+            },
+            handleChangePage(){
+                console.log("张鹏的博客")
+            }
+        }
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<script src="vue.js"></script>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .active{
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+<div id="box">
+    <ul>
+        <li v-for="(data,index) in datalist">
+           列表遍历in {{data}}--{{index}}
+        </li>
+    </ul>
+
+    <ul>
+        <li v-for="(data,index) of datalist">
+            列表遍历of {{data}}--{{index}}
+        </li>
+    </ul>
+
+
+    <ul>
+        <li v-for="(data,key) in obj">
+           对象便利 {{data}}--{{key}}
+        </li>
+    </ul>
+</div>
+</body>
+<script>
+    var vm=new Vue({
+        el:"#box",
+        data:{
+            datalist:["1111","2222","3333"],
+            obj:{
+                name:"jokerboozp",
+                age:"20",
+                sex:"男"
+            }
+        }
+    })
+</script>
+</html>

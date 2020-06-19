@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<script src="vue.js"></script>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="box">
+    <button @click="handleClick()">click</button>
+    <div v-if="isCreated">动态创建和删除--v-if</div>
+    <div v-else>动态创建和删除--v-else</div>
+
+    <ul v-if="datalist.length">
+        <li v-for="data in datalist">
+            {{data}}
+        </li>
+    </ul>
+    <div v-else>
+        购物车空空如也
+    </div>
+
+    <div v-if="which===1">
+        111111
+    </div>
+    <div v-else-if="which===2">
+        222222
+    </div>
+    <div v-else>
+        333333
+    </div>
+</div>
+</body>
+
+<script>
+    var vm=new Vue({
+        el:"#box",
+        data:{
+            isCreated: false,
+            datalist:["111","222"],
+            which:1
+        },
+        methods:{
+            handleClick(){
+                this.isCreated=!this.isCreated,
+                    this.datalist=["111","222","333"]
+            }
+        }
+    })
+</script>
+</html>

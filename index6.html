@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<script src="vue.js"></script>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="box">
+    <input type="text" @input="handleInput()" v-model="myText">
+    <ul>
+        <li v-for="data in datalist">
+            {{data}}
+        </li>
+    </ul>
+</div>
+<script>
+    var vm=new Vue({
+        el:"#box",
+        data:{
+            myText:'',
+            datalist:["aaa","bbb","cccc","abd","aar","acd","eee"],
+            //复制原始数据，前期比较笨的方法
+            list:["aaa","bbb","cccc","abd","aar","acd","eee"]
+        },
+        methods:{
+            handleInput(){
+                console.log(this.myText)
+                //筛选数组
+                var newlist=this.list.filter(item=>item.indexOf(this.myText)>-1)
+
+                console.log(newlist)
+
+                this.datalist=newlist;
+            }
+        }
+    })
+
+    /*
+    //利用filter实现按照条件筛选数组
+    var arr=[1,2,3,4,5]
+
+    var newlist=arr.filter(item=>{
+        return item>3
+    })
+    console.log(newlist)*/
+</script>
+</body>
+</html>
